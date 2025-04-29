@@ -2,11 +2,14 @@ import { FC, useState } from "react";
 import { Container, Typography } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
-import TodoList from "./components/ToDoList";
+import TodoList from "./components/TodoList";
 import { Task } from "./types";
+import { useSnackbarAlerts } from "../../hooks/useSnackbarAlerts";
 
 const Todo: FC = () => {
   const [todoList, setToDoList] = useState<Task[]>([]);
+    const {showSuccessSnackbar} = useSnackbarAlerts();
+  
 
   const addTask = (taskName: string, deadline: number): void => {
     const newTask: Task = { id: uuidv4(), taskName, deadline, isComplete: false };
@@ -15,6 +18,7 @@ const Todo: FC = () => {
 
   const deleteTask = (taskId: string): void => {
     setToDoList(todoList.filter((task) => task.id !== taskId));
+    showSuccessSnackbar("Task Deleted Successfully")
   };
 
   const completeTask = (taskId: string): void => {

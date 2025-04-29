@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TodoListProps } from "../types";
-import TodoTask from "./ToDoTask";
+import TodoTask from "./TodoTask";
 import { Stack, Typography } from "@mui/material";
 
 const TodoList: FC<TodoListProps> = ({

@@ -1,11 +1,14 @@
 import { Container } from "@mui/material";
 import Todo from "./pages/Todo/Todo";
+import { SnackbarProvider } from "./Context/snackbarProvider";
 
 function App() {
   return (
-    <Container>
-      <Todo />
-    </Container>
+    <SnackbarProvider>
+      <Container>
+        <Todo />
+      </Container>
+    </SnackbarProvider>
   );
 }
 
