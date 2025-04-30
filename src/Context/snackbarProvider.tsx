@@ -1,12 +1,9 @@
-import { createContext, useContext, useReducer, FC } from "react";
+import { useReducer, FC } from "react";
 import { Snackbar, Alert, AlertColor } from "@mui/material";
 import { snackbarReducer } from "../Reducers/snackbarReducer";
 import { initialSnackbar } from "../constants/initialSnackbar";
-import { SnackbarContextType, SnackbarProviderProps } from "../types/snackbar";
-
-const SnackbarContext = createContext<SnackbarContextType | undefined>(
-  undefined
-);
+import { SnackbarProviderProps } from "../types/snackbar";
+import { SnackbarContext } from "./SnackbarContext";
 
 export const SnackbarProvider: FC<SnackbarProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(snackbarReducer, initialSnackbar);
@@ -34,12 +31,4 @@ export const SnackbarProvider: FC<SnackbarProviderProps> = ({ children }) => {
       </Snackbar>
     </SnackbarContext.Provider>
   );
-};
-
-export const useSnackbar = (): SnackbarContextType => {
-  const context = useContext(SnackbarContext);
-  if (!context) {
-    throw new Error("useSnackbar must be used within a SnackbarProvider");
-  }
-  return context;
 };

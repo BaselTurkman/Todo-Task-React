@@ -1,4 +1,4 @@
-import { useSnackbar } from "../Context/snackbarProvider";
+import { useSnackbar } from "./useSnackbar";
 
 export function useSnackbarAlerts() {
   const { showSnackbar } = useSnackbar();
