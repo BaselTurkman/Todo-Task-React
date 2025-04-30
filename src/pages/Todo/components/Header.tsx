@@ -4,7 +4,7 @@ import { HeaderProps } from "../types";
 import { useSnackbarAlerts } from "../../../hooks/useSnackbarAlerts";
 
 const Header: FC<HeaderProps> = ({ addTask }) => {
-  const {showSuccessSnackbar} = useSnackbarAlerts();
+  const { showSuccessSnackbar } = useSnackbarAlerts();
 
   const [taskName, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(1);
@@ -14,7 +14,7 @@ const Header: FC<HeaderProps> = ({ addTask }) => {
     addTask(taskName, deadline);
     setTask("");
     setDeadline(0);
-    showSuccessSnackbar("Task Added Successfully")
+    showSuccessSnackbar("Task Added Successfully");
   };
 
   return (

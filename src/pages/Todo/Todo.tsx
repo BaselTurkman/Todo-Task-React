@@ -8,17 +8,21 @@ import { useSnackbarAlerts } from "../../hooks/useSnackbarAlerts";
 
 const Todo: FC = () => {
   const [todoList, setToDoList] = useState<Task[]>([]);
-    const {showSuccessSnackbar} = useSnackbarAlerts();
-  
+  const { showSuccessSnackbar } = useSnackbarAlerts();
 
   const addTask = (taskName: string, deadline: number): void => {
-    const newTask: Task = { id: uuidv4(), taskName, deadline, isComplete: false };
+    const newTask: Task = {
+      id: uuidv4(),
+      taskName,
+      deadline,
+      isComplete: false,
+    };
     setToDoList([...todoList, newTask]);
   };
 
   const deleteTask = (taskId: string): void => {
     setToDoList(todoList.filter((task) => task.id !== taskId));
-    showSuccessSnackbar("Task Deleted Successfully")
+    showSuccessSnackbar("Task Deleted Successfully");
   };
 
   const completeTask = (taskId: string): void => {
@@ -31,7 +35,9 @@ const Todo: FC = () => {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 5 }}>
-      <Typography variant="h4" gutterBottom align="center">Todo List</Typography>
+      <Typography variant="h4" gutterBottom align="center">
+        Todo List
+      </Typography>
       <Header addTask={addTask} />
       <TodoList
         todoList={todoList}

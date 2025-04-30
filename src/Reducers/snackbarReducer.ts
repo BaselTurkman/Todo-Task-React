@@ -1,17 +1,4 @@
-import { AlertColor } from "@mui/material";
-import { SnackbarState } from "../types/snackbar";
-
-export type SnackbarAction =
-  | {
-      type: "show-snackbar";
-      payload: {
-        message: string;
-        severity?: AlertColor;
-      };
-    }
-  | {
-      type: "hide-snackbar";
-    };
+import { SnackbarAction, SnackbarState } from "../types/snackbar";
 
 export const snackbarReducer = (
   state: SnackbarState,
