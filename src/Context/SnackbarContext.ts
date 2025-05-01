@@ -1,4 +1,10 @@
 import { createContext } from "react";
-import { SnackbarContextType } from "../types/snackbar";
+import { AlertColor } from "@mui/material";
 
-export const SnackbarContext = createContext<SnackbarContextType | undefined>(undefined);
+export const SnackbarContext = createContext<SnackbarContextType | undefined>(
+  undefined
+);
+
+export interface SnackbarContextType {
+  showSnackbar: (message: string, severity: AlertColor) => void;
+}

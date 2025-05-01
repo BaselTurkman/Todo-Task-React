@@ -8,10 +8,10 @@ import { SnackbarContext } from "./SnackbarContext";
 export const SnackbarProvider: FC<SnackbarProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(snackbarReducer, initialSnackbar);
 
-  const showSnackbar = (message: string, severity: AlertColor = "info") => {
+  const showSnackbar = (message: string, severity: AlertColor) => {
     dispatch({ type: "show-snackbar", payload: { message, severity } });
   };
-
+  
   const handleClose = () => {
     dispatch({ type: "hide-snackbar" });
   };

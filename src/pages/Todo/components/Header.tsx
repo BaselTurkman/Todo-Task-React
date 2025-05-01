@@ -6,16 +6,18 @@ import { useSnackbarAlerts } from "../../../hooks/useSnackbarAlerts";
 const Header: FC<HeaderProps> = ({ addTask }) => {
   const { showSuccessSnackbar } = useSnackbarAlerts();
 
-  const [taskName, setTask] = useState<string>("");
-  const [deadline, setDeadline] = useState<number>(1);
+  const [taskName, setTask] = useState("");
+  const [deadline, setDeadline] = useState(1);
 
   const handleAdd = () => {
     if (taskName.trim() === "") return;
     addTask(taskName, deadline);
     setTask("");
-    setDeadline(0);
+    setDeadline(1);
     showSuccessSnackbar("Task Added Successfully");
   };
+
+  const isAddDisable = taskName.trim() === ""
 
   return (
     <Box display="flex" gap={2} mb={4}>
@@ -42,8 +44,7 @@ const Header: FC<HeaderProps> = ({ addTask }) => {
           },
         }}
       />
-
-      <Button variant="contained" onClick={handleAdd}>
+      <Button variant="contained" onClick={handleAdd} disabled = {isAddDisable}>
         Add
       </Button>
     </Box>

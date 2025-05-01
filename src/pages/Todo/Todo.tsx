@@ -10,26 +10,29 @@ const Todo: FC = () => {
   const [todoList, setToDoList] = useState<Task[]>([]);
   const { showSuccessSnackbar } = useSnackbarAlerts();
 
-  const addTask = (taskName: string, deadline: number): void => {
+  const addTask = (taskName: string, deadline: number) => {
     const newTask: Task = {
       id: uuidv4(),
       taskName,
       deadline,
       isComplete: false,
     };
-    setToDoList([...todoList, newTask]);
+    setToDoList((prev) => [...prev, newTask]);
   };
 
-  const deleteTask = (taskId: string): void => {
-    setToDoList(todoList.filter((task) => task.id !== taskId));
+  const deleteTask = (taskId: string) => {
+    const filteredList = todoList.filter((task) => task.id !== taskId);
+    setToDoList(filteredList);
     showSuccessSnackbar("Task Deleted Successfully");
   };
 
-  const completeTask = (taskId: string): void => {
+  const completeTask = (taskId: string) => {
     setToDoList(
-      todoList.map((task) =>
-        task.id === taskId ? { ...task, isComplete: !task.isComplete } : task
-      )
+      todoList.map((task) => {
+        const haveSameId = task.id === taskId;
+        if (haveSameId) return { ...task, isComplete: !task.isComplete };
+        return task;
+      })
     );
   };
 

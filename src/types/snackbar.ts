@@ -15,14 +15,19 @@ export interface SnackbarProviderProps {
   children: ReactNode;
 }
 
-export type SnackbarAction =
-  | {
-      type: "show-snackbar";
-      payload: {
-        message: string;
-        severity?: AlertColor;
-      };
-    }
-  | {
-      type: "hide-snackbar";
-    };
+interface SnackbarPayload {
+  message: string;
+  severity: AlertColor;
+}
+
+export type SnackbarAction = {
+  type: "show-snackbar" | "hide-snackbar";
+  payload?: SnackbarPayload;
+};
+
+export enum SnackbarSeverity {
+  Success = "success",
+  Error = "error",
+  Info = "info",
+  Warning = "warning",
+}

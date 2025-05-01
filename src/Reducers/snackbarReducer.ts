@@ -1,3 +1,4 @@
+import { SEVERITIES } from "../types";
 import { SnackbarAction, SnackbarState } from "../types/snackbar";
 
 export const snackbarReducer = (
@@ -9,8 +10,8 @@ export const snackbarReducer = (
       return {
         ...state,
         open: true,
-        message: action.payload.message,
-        severity: action.payload.severity || "info",
+        message: action.payload?.message ?? "",
+        severity: action.payload?.severity || SEVERITIES.INFO,
       };
     case "hide-snackbar":
       return {
